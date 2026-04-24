@@ -1,0 +1,12 @@
+package com.lbyqsl.api.utils;
+
+import com.lbyqsl.api.vo.ResultVO;
+
+public class R {
+    public static ResultVO ok(){
+        ResultVO r = new ResultVO();
+        r.setCode(0);
+        r.setMsg("接收成功");
+        return r;
+    }
+}
