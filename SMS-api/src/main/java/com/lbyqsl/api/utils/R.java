@@ -9,4 +9,11 @@ public class R {
         r.setMsg("接收成功");
         return r;
     }
+
+    public static ResultVO error(Integer code,String msg) {
+        ResultVO r= new ResultVO();
+        r.setCode(code);
+        r.setMsg(msg);
+        return r;
+    }
 }
