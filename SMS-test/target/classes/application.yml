@@ -1,0 +1,23 @@
+# 服务名
+spring:
+  application:
+    name: SMS-test
+  # nacos地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 8.134.33.229:8848
+  # datasource
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://8.134.33.229:3306/SMS?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Lbyqsl123
+# 端口号
+server:
+  port: 20000
+
+# mybatis
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

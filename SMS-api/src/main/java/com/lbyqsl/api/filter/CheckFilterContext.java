@@ -1,5 +1,6 @@
 package com.lbyqsl.api.filter;
 
+import com.lbyqsl.common.model.StandardSubmit;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -16,10 +17,10 @@ public class CheckFilterContext {
     @Value("${filters:apikey}")
     private String filters;
 
-    public void check(Object obj){
+    public void check(StandardSubmit submit){
         String[] filetersList=filters.split(",");
         for (String s : filetersList) {
-            checkfilterMap.get(s).Check(obj);
+            checkfilterMap.get(s).Check(submit);
         }
     }
 

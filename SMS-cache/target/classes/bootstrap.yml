@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: SMS-cache
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 8.134.33.229:8848
+      config:
+        server-addr: 8.134.33.229:8848
+        file-extension: yml
+  redis:
+    host: 8.134.33.229:8848
+    port: 6379
+    password: Lbyqsl123

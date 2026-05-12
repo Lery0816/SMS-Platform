@@ -7,19 +7,24 @@
         <version>2.3.12.RELEASE</version>
         <relativePath />
     </parent>
-
+    <packaging>pom</packaging>
     <groupId>com.lbyqsl</groupId>
     <artifactId>SMS-Platform</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+
     <modules>
         <module>SMS-api</module>
+        <module>SMS-Common</module>
+        <module>SMS-cache</module>
+        <module>SMS-test</module>
     </modules>
 
     <properties>
         <spring.cloud-version>Hoxton.SR12</spring.cloud-version>
         <spring.cloud.alibaba-version>2.2.6.RELEASE</spring.cloud.alibaba-version>
+        <horse-version>1.0.0</horse-version>
     </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -33,6 +38,13 @@
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
                 <version>${spring.cloud.alibaba-version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.msb.cloud</groupId>
+                <artifactId>horse-framework-starters</artifactId>
+                <version>${horse-version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
