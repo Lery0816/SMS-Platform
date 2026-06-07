@@ -5,6 +5,7 @@
 
 package com.lbyqsl.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import com.alibaba.cloud.commons.lang.StringUtils;
@@ -39,6 +40,19 @@ public class TestController {
     public Map get(@PathVariable String key) {
         Map<String, Object> map = redisClient.hGetAll(key);
         return map;
+    }
+
+    @PostMapping("/test/pipeline")
+    public String pipelined(){
+        Map<String,Object> maps=new HashMap<>();
+        maps.put("1888888","北京 北京,移动");
+        maps.put("1888889","北京 北京,电信");
+        redisClient.pipelined(operations->{
+            for (Map.Entry<String, Object> entry : maps.entrySet()) {
+                operations.opsForValue().set(entry.getKey(),entry.getValue());
+            }
+        });
+        return "OK";
     }
 
 

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
 import java.util.Map;
 
 @FeignClient(value = "SMS-cache")
@@ -20,9 +21,10 @@ public interface CacheClient {
     @PostMapping(value = "/cache/sadd/{key}")
     void sadd(@PathVariable(value = "key")String key, @RequestBody Map<String,Object>... maps);
 
+    @PostMapping(value = "/cache/saddstr/{key}")
+    void saddstr(@PathVariable(value = "key")String key, @RequestBody List<String> strings);
+
     @PostMapping("/cache/pipeline/string")
     void pipelineString(@RequestBody Map<String,String> map);
 
-    @PostMapping(value = "/cache/saddstr/{key}")
-    void saddStr(@PathVariable(value = "key")String key, @RequestBody String... value);
 }

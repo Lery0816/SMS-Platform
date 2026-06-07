@@ -17,6 +17,7 @@
         <module>SMS-Common</module>
         <module>SMS-cache</module>
         <module>SMS-test</module>
+        <module>SMS-strategy</module>
     </modules>
 
     <properties>

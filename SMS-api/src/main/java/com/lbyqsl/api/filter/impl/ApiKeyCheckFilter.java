@@ -22,16 +22,16 @@ public class ApiKeyCheckFilter implements Checkfilter {
     @Override
     public void Check(StandardSubmit submit) {
         //基于cacheClient查询客户信息
-        Map clientBusiness = cacheClient.hGetAll(CacheConstant.CLIENT_BUSINESS + submit.getApiKey());
+        Map clientBusiness = cacheClient.hGetAll(CacheConstant.CLIENT_BUSINESS + submit.getApikey());
 
         //如果为null直接抛出异常
         if (null==clientBusiness||clientBusiness.size()==0){
-            log.info("【Api模块-apikey校验】 非法的apikey={}",submit.getApiKey());
+            log.info("【Api模块-apikey校验】 非法的apikey={}",submit.getApikey());
             throw new ApiException(ExceptionEnums.ERROR_APIKEY);
         }
 
         //正常封装数据
-        submit.setClientId(String.valueOf(Long.parseLong(clientBusiness.get("id")+"")));
+        submit.setClientId(Long.parseLong(clientBusiness.get("id") + ""));
         log.info("【Api模块-apikey校验】 查询到客户信息 clientBusiness = {}",clientBusiness);
     }
 }

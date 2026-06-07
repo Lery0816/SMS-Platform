@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDateTime;
 
 @Slf4j
 @RestController
@@ -53,19 +54,20 @@ public class SmsController {
         String ip = this.getRealIP(req);
 
 //        构建StandarSubmit
-        StandardSubmit submit=new StandardSubmit();
+        StandardSubmit submit = new StandardSubmit();
         submit.setRealIP(ip);
-        submit.setApiKey(singleSendForm.getApikey());
+        submit.setApikey(singleSendForm.getApikey());
         submit.setMobile(singleSendForm.getMobile());
         submit.setText(singleSendForm.getText());
-        submit.setReportState(singleSendForm.getState());
-        submit.setClientId(singleSendForm.getUid());
+        submit.setState(singleSendForm.getState());
+        submit.setUid(singleSendForm.getUid());
 
         //调用策略模式的校验链
         checkFilterContext.check(submit);
 
-        //基于雪花算法生成唯一id并添加到StandarSubmit中
+        //基于雪花算法生成唯一id并添加到StandarSubmit中,并设置发送时间
         submit.setSequenceId(snowFlakeUtil.nextId());
+        submit.setSendTime(LocalDateTime.now());
 
         //发送到MQ，交给策略模块处理
         rabbitTemplate.convertAndSend(RabbitMQConstants.SMS_PRE_SEND,submit,new CorrelationData(submit.getSequenceId().toString()));
