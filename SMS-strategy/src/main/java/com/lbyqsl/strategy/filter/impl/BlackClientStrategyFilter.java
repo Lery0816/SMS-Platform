@@ -13,12 +13,10 @@ import org.springframework.stereotype.Service;
 
 /**
  * 黑名单校验
- * @author zjw
- * @description
  */
-@Service(value = "blackGlobal")
+@Service(value = "blackClient")
 @Slf4j
-public class BlackGlobalStrategyFilter implements StrategyFilter {
+public class BlackClientStrategyFilter implements StrategyFilter {
 
     @Autowired
     private ErrorSendMsgUtil sendMsgUtil;
@@ -31,22 +29,23 @@ public class BlackGlobalStrategyFilter implements StrategyFilter {
 
     @Override
     public void check(StandardSubmit submit) {
-        log.info("【策略模块-全局级别黑名单校验】   校验ing…………");
-        //1、获取发送短信的手机号
+        log.info("【策略模块-客户级别黑名单校验】   校验ing…………");
+        //1、获取发送短信的手机号,以及客户的ID
         String mobile = submit.getMobile();
+        Long clientId = submit.getClientId();
 
         //2、调用Redis查询
-        String value = cacheClient.get(CacheConstant.BLACK + mobile);
+        String value = cacheClient.get(CacheConstant.BLACK + clientId + CacheConstant.SEPARATE + mobile);
 
         //3、如果查询的结果为"1"，代表是黑名单
         if(TRUE.equals(value)){
-            log.info("【策略模块-全局级别黑名单校验】   当前手机号是黑名单！ mobile = {}",mobile);
-            submit.setErrorMsg(ExceptionEnums.BLACK_GLOBAL.getMsg() + ",mobile = " + mobile);
+            log.info("【策略模块-客户级别黑名单校验】   当前发送的手机号是客户黑名单！ mobile = {}",mobile);
+            submit.setErrorMsg(ExceptionEnums.BLACK_CLIENT + ",mobile = " + mobile);
             sendMsgUtil.sendWriteLog(submit);
             sendMsgUtil.sendPushReport(submit);
-            throw new StrategyException(ExceptionEnums.BLACK_GLOBAL);
+            throw new StrategyException(ExceptionEnums.BLACK_CLIENT);
         }
         //4、不是1，正常结束
-        log.info("【策略模块-全局级别黑名单校验】   当前手机号不是黑名单！");
+        log.info("【策略模块-客户级别黑名单校验】   当前手机号不是客户黑名单！ ");
     }
 }
