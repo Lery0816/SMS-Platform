@@ -2,12 +2,11 @@ package com.lbyqsl.search.mq;
 
 import com.lbyqsl.common.constant.RabbitMQConstants;
 import com.lbyqsl.common.model.StandardSubmit;
-import com.lbyqsl.common.utills.JsonUtil;
+import com.lbyqsl.common.utils.JsonUtil;
 import com.lbyqsl.search.service.SearchService;
 import com.lbyqsl.search.utils.SearchUtils;
 import com.rabbitmq.client.Channel;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.StringUtils;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.beans.factory.annotation.Autowired;

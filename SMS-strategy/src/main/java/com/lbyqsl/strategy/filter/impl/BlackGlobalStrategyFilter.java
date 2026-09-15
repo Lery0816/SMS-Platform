@@ -13,8 +13,6 @@ import org.springframework.stereotype.Service;
 
 /**
  * 黑名单校验
- * @author zjw
- * @description
  */
 @Service(value = "blackGlobal")
 @Slf4j

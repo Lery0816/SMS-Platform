@@ -1,0 +1,38 @@
+# MyBatis和dataSource配置
+spring:
+  datasource:
+    driver-class-name: org.gjt.mm.mysql.Driver
+    url: jdbc:mysql://localhost:3306/SMS?characterEncoding=utf-8&useSSL=false
+    username: root
+    password: Lbyqsl123
+    type: com.alibaba.druid.pool.DruidDataSource
+# 服务名称
+  application:
+    name: SMS-web
+  # 多环境
+  profiles:
+    active: dev
+  # nacos注册中心地址
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 8.134.33.229:8848
+      # nacos配置中心地址:
+      config:
+        server-addr: 8.134.33.229:8848
+        file-extension: yml
+        # beacon-search-dev.yml
+
+# MyBatis
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+# shiro配置
+shiro:
+  # 默认登录页面
+  loginUrl: /login.html
+  # 没有权限的页面
+  unauthorizedUrl: unauthorized.html
+

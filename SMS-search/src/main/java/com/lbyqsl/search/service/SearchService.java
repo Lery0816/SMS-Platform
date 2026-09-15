@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * @author zjw
+ * @author lbyqsl
  * @description
  */
 public interface SearchService {

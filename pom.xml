@@ -19,6 +19,9 @@
         <module>SMS-test</module>
         <module>SMS-strategy</module>
         <module>SMS-search</module>
+        <module>SMS-push</module>
+        <module>SMS-gateway</module>
+        <module>SMS-web</module>
     </modules>
 
     <properties>

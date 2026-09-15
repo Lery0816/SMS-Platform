@@ -2,7 +2,7 @@ package com.lbyqsl.common.constant;
 
 /**
  * 缓存模块中的各种前缀
- * @author zjw
+ * @author lbyqsl
  * @description
  */
 public interface CacheConstant {

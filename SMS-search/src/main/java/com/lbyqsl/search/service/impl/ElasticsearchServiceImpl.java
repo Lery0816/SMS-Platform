@@ -67,7 +67,7 @@ public class ElasticsearchServiceImpl implements SearchService {
         IndexResponse response = restHighLevelClient.index(request, RequestOptions.DEFAULT);
         //4、校验添加是否成功
         String result = response.getResult().getLowercase();
-        if (!CREATED.equals(result)) {
+        if (!"created".equals(result) && !"updated".equals(result)) {
             // 添加失败！！
             log.error("【搜索模块-写入数据失败】 index = {},id = {},json = {},result = {}", index, id, json, result);
             throw new SearchException(ExceptionEnums.SEARCH_INDEX_ERROR);

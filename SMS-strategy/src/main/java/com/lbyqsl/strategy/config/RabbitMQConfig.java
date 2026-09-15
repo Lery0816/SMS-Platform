@@ -28,13 +28,14 @@ public class RabbitMQConfig {
         return QueueBuilder.durable(RabbitMQConstants.SMS_WRITE_LOG).build();
     }
 
-//    /**
-//     * 状态报告的队列。
-//     * @return
-//     */
-//    @Bean
-//    public Queue pushReportQueue(){
-//        return QueueBuilder.durable(RabbitMQConstants.SMS_PUSH_REPORT).build();
-//    }
+    /**
+     * 状态报告的队列。
+     * @return
+     */
+    @Bean
+    public Queue pushReportQueue(){
+        return QueueBuilder.durable(RabbitMQConstants.SMS_PUSH_REPORT).build();
+    }
+
 
 }

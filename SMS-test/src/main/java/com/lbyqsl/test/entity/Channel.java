@@ -1,7 +1,7 @@
 package com.lbyqsl.test.entity;
 
 /**
- * @author zjw
+ * @author lbyqsl
  * @description
  */
 public class Channel {

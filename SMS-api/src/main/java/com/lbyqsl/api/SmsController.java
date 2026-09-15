@@ -8,7 +8,7 @@ import com.lbyqsl.api.utils.R;
 import com.lbyqsl.api.vo.ResultVO;
 import com.lbyqsl.common.constant.RabbitMQConstants;
 import com.lbyqsl.common.model.StandardSubmit;
-import com.lbyqsl.common.utills.SnowFlakeUtil;
+import com.lbyqsl.common.utils.SnowFlakeUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -38,8 +38,7 @@ public class SmsController {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-//**请求路径：** https://sms.beaconcloud.com/v1/sms/single_send
-//通过网关来进行v1的版本控制
+//**请求路径：** https://localhost:10001/sms/single_send
 //**请求方式：** POST
     @PostMapping(value = "/single_send",produces = "application/json;charset=utf-8")
     public ResultVO singleSend(@RequestBody @Validated SingleSendForm singleSendForm, BindingResult bindingResult,HttpServletRequest req){

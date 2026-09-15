@@ -2,8 +2,6 @@ package com.lbyqsl.common.constant;
 
 /**
  * 通用的一些常量
- * @author zjw
- * @description
  */
 public interface SmsConstant {
 
